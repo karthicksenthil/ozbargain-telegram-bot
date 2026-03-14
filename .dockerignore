@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+package-lock.json
+.env
+.git
+.gitignore
+README.md
+.DS_Store
+*.md
+Thumbs.db
+.vscode
+.idea
+*.swp
+*.swo
+.pm2
+logs
+*.log

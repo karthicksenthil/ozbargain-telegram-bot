@@ -1,0 +1,33 @@
+{
+  "name": "ozbargain-telegram-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot that monitors OzBargain and sends notifications when deals hit 50+ upvotes",
+  "main": "ozbargain-bot.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node ozbargain-bot-rss.js",
+    "start:rss": "node ozbargain-bot-rss.js",
+    "start:scraper": "node ozbargain-bot.js",
+    "dev": "nodemon ozbargain-bot-rss.js",
+    "dev:scraper": "nodemon ozbargain-bot.js",
+    "test": "node test-bot.js"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "ozbargain",
+    "deals",
+    "scraper"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "1.0.0-rc.5",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

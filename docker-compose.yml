@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+  ozbargain-bot:
+    build: .
+    container_name: ozbargain-telegram-bot
+    restart: unless-stopped
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHANNEL_ID=${TELEGRAM_CHANNEL_ID}
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+    env_file:
+      - .env
+    # DNS servers - helps resolve Telegram API
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+      - 8.8.4.4
+    # Network mode
+    network_mode: bridge
+    # Choose which version to run:
+    # - ozbargain-bot.js = Direct scraping (faster but may get blocked)
+    # - ozbargain-bot-rss.js = RSS-based (slower but more polite, less likely blocked)
+    command: ["node", "ozbargain-bot-rss.js"]
+    # Uncomment below if you want to persist notified posts data
+    # volumes:
+    #   - ./data:/app/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # Resource limits (optional)
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
